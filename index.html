@@ -158,14 +158,14 @@ function sendToWhatsApp(event){
         + "Name: " + name + "%0A"
         + "Phone: " + phone + "%0A%0A";
 
-    for (let i = 2; i <= 6; i++) {
-        let item = document.getElementById("item" + i)?.value;
-        let qty = document.getElementById("quantity" + (i === 2 ? "" : i))?.value;
+    for (let i = 1; i <= 6; i++) {
+    let item = document.getElementById("item" + i)?.value;
+    let qty = document.getElementById("quantity" + i)?.value;
 
-        if(item && qty){
-            message += "Item: " + item + " | Qty: " + qty + "%0A";
-        }
+    if(item && qty){
+        message += "Item: " + item + " | Qty: " + qty + "%0A";
     }
+}
 
     message += "%0APayment: " + payment + "%0A";
     message += "Pickup Time: " + time;
@@ -392,6 +392,7 @@ loading="lazy">
 
 </body>
 </html>
+
 
 
 
