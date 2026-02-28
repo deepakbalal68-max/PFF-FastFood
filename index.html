@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PFF FAST FOOD | Jalandhar</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat',sans-serif;}
+body {background:#fff8f0; color:#333;}
+header {
+    background: linear-gradient(to right,#d62828,#f77f00);
+    padding: 20px; text-align:center; color:white;
+}
+.logo {font-size:42px; font-weight:900;}
+.logo span {color:#ffd60a;}
+.tagline {font-size:16px; margin-top:5px;}
+.hero {
+    background:url('https://images.unsplash.com/photo-1550547660-d9450f859349') center/cover;
+    height:300px; display:flex; align-items:center; justify-content:center; color:white;
+}
+.hero h1 {
+    background:rgba(0,0,0,0.6); padding:15px 30px; border-radius:8px;
+}
+section {padding:50px 20px; text-align:center;}
+h2 {color:#d62828; margin-bottom:30px;}
+.menu-container {
+    display:flex; flex-wrap:wrap; justify-content:center; gap:20px;
+}
+.menu-item {
+    background:white; width:230px; border-radius:10px; overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15); transition:0.3s;
+}
+.menu-item:hover {transform:translateY(-8px);}
+.menu-item img {width:100%; height:160px; object-fit:cover;}
+.menu-item h3 {padding:12px;}
+form {
+    max-width:500px; margin:auto; display:flex; flex-direction:column; gap:15px;
+}
+input, select, textarea {
+    padding:10px; border-radius:6px; border:1px solid #ccc;
+}
+button {
+    padding:12px; background:#d62828; color:white; border:none; border-radius:6px;
+    font-weight:bold; cursor:pointer;
+}
+.reviews {display:flex; flex-wrap:wrap; justify-content:center; gap:20px;}
+.review-box {
+    background:white; padding:20px; width:250px; border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+footer {background:#d62828; color:white; padding:15px;}
+.whatsapp {
+    position:fixed; bottom:20px; right:20px; background:#25D366;
+    color:white; padding:15px; border-radius:50%; text-decoration:none;
+}
+
+/* Mobile responsiveness */
+@media (max-width:600px){
+    .menu-container {flex-direction:column; align-items:center;}
+    .menu-item {width:90%;}
+}
+</style>
+
+</head>
+<body>
+
+<header>
+<div class="logo">🍔 PFF <span>FAST FOOD</span></div>
+<div class="tagline">Fresh • Fast • Delicious | Dine-In & Take Away</div>
+</header>
+
+<div class="hero">
+<h1>Welcome to PFF FAST FOOD</h1>
+</div>
+
+<section>
+<h2>🍟 Our Menu</h2>
+<div class="menu-container">
+
+<div class="menu-item">
+<img src="https://images.unsplash.com/photo-1604908176997-43136f3e69b0" alt="Veg Noodles">
+<h3>Veg Noodles</h3>
+</div>
+
+<div class="menu-item">
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd" alt="Burger">
+<h3>Burger</h3>
+</div>
+
+<div class="menu-item">
+<img src="https://images.unsplash.com/photo-1550317138-10000687a72b" alt="Cheese Burger">
+<h3>Cheese Burger</h3>
+</div>
+
+<div class="menu-item">
+<img src="https://images.unsplash.com/photo-1601050690597-df0568f70950" alt="Veg Spring Rolls">
+<h3>Veg Spring Rolls</h3>
+</div>
+
+<div class="menu-item">
+<img src="https://images.unsplash.com/photo-1576107232684-1279f390859f" alt="Fries">
+<h3>Fries</h3>
+</div>
+
+<div class="menu-item">
+<img src="https://images.unsplash.com/photo-1581636625402-29b2a704ef13" alt="Soft Drinks">
+<h3>Soft Drinks</h3>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2>🛒 Order Online</h2>
+<form action="mailto:deepakbalal68@gmail.com" method="post" enctype="text/plain">
+<input type="text" name="Name" placeholder="Your Name" required>
+<input type="tel" name="Phone" placeholder="Your Phone Number" required>
+
+<select name="Item" required>
+<option value="">Select Item</option>
+<option>Veg Noodles</option>
+<option>Burger</option>
+<option>Cheese Burger</option>
+<option>Veg Spring Rolls</option>
+<option>Fries</option>
+<option>Soft Drinks</option>
+</select>
+
+<select name="Payment Method" required>
+<option value="">Payment Method</option>
+<option>Cash on Delivery</option>
+<option>UPI</option>
+</select>
+
+<textarea name="Address" placeholder="Your Address"></textarea>
+
+<button type="submit">Place Order</button>
+</form>
+
+<br>
+<a href="https://wa.me/919888919532" target="_blank">
+<button style="background:#25D366;">Order on WhatsApp</button>
+</a>
+
+</section>
+
+<section>
+<h2>⭐ Customer Reviews</h2>
+<div class="reviews">
+
+<div class="review-box">
+<p>⭐⭐⭐⭐⭐</p>
+<p>Best burger in Jalandhar! Very tasty and fresh.</p>
+<strong>- Rahul</strong>
+</div>
+
+<div class="review-box">
+<p>⭐⭐⭐⭐⭐</p>
+<p>Fast service and clean place. Loved the fries!</p>
+<strong>- Simran</strong>
+</div>
+
+<div class="review-box">
+<p>⭐⭐⭐⭐⭐</p>
+<p>Affordable price and delicious food.</p>
+<strong>- Aman</strong>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2>📍 Location</h2>
+<p>Opposite Kali Mata Mandir, Sodal Road, Jalandhar, Punjab - 144004</p>
+<p><strong>Open:</strong> 5 PM – 11 PM</p>
+<p><strong>Call:</strong> 9888919532</p>
+</section>
+
+<footer>
+© 2026 PFF FAST FOOD | Serving Happiness 🍔
+</footer>
+
+<a class="whatsapp" href="https://wa.me/919888919532" target="_blank">📲</a>
+
+</body>
+</html>
