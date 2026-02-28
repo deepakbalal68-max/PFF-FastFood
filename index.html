@@ -10,59 +10,157 @@
 <style>
 * {margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat',sans-serif;}
 body {background:#fff8f0; color:#333;}
+
 header {
     background: linear-gradient(to right,#d62828,#f77f00);
-    padding: 20px; text-align:center; color:white;
+    padding: 20px;
+    text-align:center;
+    color:white;
 }
+
 .logo {font-size:42px; font-weight:900;}
 .logo span {color:#ffd60a;}
 .tagline {font-size:16px; margin-top:5px;}
+
 .hero {
-    background:url('https://images.unsplash.com/photo-1550547660-d9450f859349') center/cover;
-    height:300px; display:flex; align-items:center; justify-content:center; color:white;
-}
-.hero h1 {
-    background:rgba(0,0,0,0.6); padding:15px 30px; border-radius:8px;
-}
-section {padding:50px 20px; text-align:center;}
-h2 {color:#d62828; margin-bottom:30px;}
-.menu-container {
-    display:flex; flex-wrap:wrap; justify-content:center; gap:20px;
-}
-.menu-item {
-    background:white; width:230px; border-radius:10px; overflow:hidden;
-    box-shadow:0 4px 10px rgba(0,0,0,0.15); transition:0.3s;
-}
-.menu-item:hover {transform:translateY(-8px);}
-.menu-item img {width:100%; height:160px; object-fit:cover;}
-.menu-item h3 {padding:12px;}
-form {
-    max-width:500px; margin:auto; display:flex; flex-direction:column; gap:15px;
-}
-input, select, textarea {
-    padding:10px; border-radius:6px; border:1px solid #ccc;
-}
-button {
-    padding:12px; background:#d62828; color:white; border:none; border-radius:6px;
-    font-weight:bold; cursor:pointer;
-}
-.reviews {display:flex; flex-wrap:wrap; justify-content:center; gap:20px;}
-.review-box {
-    background:white; padding:20px; width:250px; border-radius:10px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-}
-footer {background:#d62828; color:white; padding:15px;}
-.whatsapp {
-    position:fixed; bottom:20px; right:20px; background:#25D366;
-    color:white; padding:15px; border-radius:50%; text-decoration:none;
+    background:url('https://png.pngtree.com/background/20250115/original/pngtree-schezwan-veg-noodles-is-a-spicy-and-tasty-stir-fried-flat-picture-image_15489284.jpg') center/cover;
+    height:300px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
 }
 
-/* Mobile responsiveness */
+.hero h1 {
+    background:rgba(0,0,0,0.6);
+    padding:15px 30px;
+    border-radius:8px;
+}
+
+section {
+    padding:50px 20px;
+    text-align:center;
+}
+
+h2 {
+    color:#d62828;
+    margin-bottom:30px;
+}
+
+.menu-container {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
+
+.menu-item {
+    background:white;
+    width:230px;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.menu-item:hover {
+    transform:translateY(-8px);
+}
+
+.menu-item img {
+    width:100%;
+    height:160px;
+    object-fit:cover;
+}
+
+.menu-item h3 {
+    padding:12px;
+}
+
+form {
+    max-width:500px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+input, select, textarea {
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+button {
+    padding:12px;
+    background:#d62828;
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover {
+    opacity:0.9;
+}
+
+footer {
+    background:#d62828;
+    color:white;
+    padding:15px;
+}
+
+.whatsapp {
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:white;
+    padding:15px;
+    border-radius:50%;
+    text-decoration:none;
+    font-size:20px;
+}
+
+.review-box {
+    background:white;
+    padding:20px;
+    margin:15px auto;
+    max-width:400px;
+    border-radius:10px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
+
 @media (max-width:600px){
     .menu-container {flex-direction:column; align-items:center;}
     .menu-item {width:90%;}
 }
 </style>
+
+<script>
+function sendToWhatsApp(event){
+    event.preventDefault();
+
+    var name = document.getElementById("name").value;
+    var phone = document.getElementById("phone").value;
+    var item = document.getElementById("item").value;
+    var quantity = document.getElementById("quantity").value;
+    var payment = document.getElementById("payment").value;
+    var address = document.getElementById("address").value;
+
+    var message = "New Order%0A%0A"
+        + "Name: " + name + "%0A"
+        + "Phone: " + phone + "%0A"
+        + "Item: " + item + "%0A"
+        + "Quantity: " + quantity + "%0A"
+        + "Payment: " + payment + "%0A"
+        + "Address: " + address;
+
+    var whatsappURL = "https://wa.me/919888919532?text=" + message;
+    window.open(whatsappURL, "_blank");
+}
+</script>
 
 </head>
 <body>
@@ -81,45 +179,44 @@ footer {background:#d62828; color:white; padding:15px;}
 <div class="menu-container">
 
 <div class="menu-item">
-<img src="https://images.unsplash.com/photo-1604908176997-43136f3e69b0" alt="Veg Noodles">
+<img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=800&auto=format&fit=crop" alt="Veg Noodles">
 <h3>Veg Noodles</h3>
 </div>
 
 <div class="menu-item">
-<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd" alt="Burger">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfB_iJt9JxN3M33edH2AVfRfzmr48gm_0lIA&s">
 <h3>Burger</h3>
 </div>
 
 <div class="menu-item">
-<img src="https://images.unsplash.com/photo-1550317138-10000687a72b" alt="Cheese Burger">
+<img src="https://5.imimg.com/data5/QY/QT/GLADMIN-46611207/big-crunch-veg-cheese-burger.png">
 <h3>Cheese Burger</h3>
 </div>
 
 <div class="menu-item">
-<img src="https://images.unsplash.com/photo-1601050690597-df0568f70950" alt="Veg Spring Rolls">
+<img src="https://i.ytimg.com/vi/4WiBxqorlJo/maxresdefault.jpg">
 <h3>Veg Spring Rolls</h3>
 </div>
 
 <div class="menu-item">
-<img src="https://images.unsplash.com/photo-1576107232684-1279f390859f" alt="Fries">
+<img src="https://thissillygirlskitchen.com/wp-content/uploads/2020/02/homemade-french-fries-8.jpg">
 <h3>Fries</h3>
 </div>
 
 <div class="menu-item">
-<img src="https://images.unsplash.com/photo-1581636625402-29b2a704ef13" alt="Soft Drinks">
+<img src="https://static.wixstatic.com/media/8f1abd_80bf432a005041b59c2a7fa1960ce71e~mv2.jpeg/v1/fill/w_744,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/8f1abd_80bf432a005041b59c2a7fa1960ce71e~mv2.jpeg">
 <h3>Soft Drinks</h3>
-</div>
-
 </div>
 </section>
 
 <section>
 <h2>🛒 Order Online</h2>
-<form action="mailto:deepakbalal68@gmail.com" method="post" enctype="text/plain">
-<input type="text" name="Name" placeholder="Your Name" required>
-<input type="tel" name="Phone" placeholder="Your Phone Number" required>
 
-<select name="Item" required>
+<form onsubmit="sendToWhatsApp(event)">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="tel" id="phone" placeholder="Your Phone Number" required>
+
+<select id="item" required>
 <option value="">Select Item</option>
 <option>Veg Noodles</option>
 <option>Burger</option>
@@ -129,18 +226,21 @@ footer {background:#d62828; color:white; padding:15px;}
 <option>Soft Drinks</option>
 </select>
 
-<select name="Payment Method" required>
+<input type="number" id="quantity" placeholder="Quantity" min="1" required>
+
+<select id="payment" required>
 <option value="">Payment Method</option>
 <option>Cash on Delivery</option>
 <option>UPI</option>
 </select>
 
-<textarea name="Address" placeholder="Your Address"></textarea>
+<textarea id="address" placeholder="Your Address"></textarea>
 
 <button type="submit">Place Order</button>
 </form>
 
 <br>
+
 <a href="https://wa.me/919888919532" target="_blank">
 <button style="background:#25D366;">Order on WhatsApp</button>
 </a>
@@ -149,12 +249,11 @@ footer {background:#d62828; color:white; padding:15px;}
 
 <section>
 <h2>⭐ Customer Reviews</h2>
-<div class="reviews">
 
 <div class="review-box">
 <p>⭐⭐⭐⭐⭐</p>
 <p>Best burger in Jalandhar! Very tasty and fresh.</p>
-<strong>- Rahul</strong>
+<strong>- Raman</strong>
 </div>
 
 <div class="review-box">
@@ -166,17 +265,34 @@ footer {background:#d62828; color:white; padding:15px;}
 <div class="review-box">
 <p>⭐⭐⭐⭐⭐</p>
 <p>Affordable price and delicious food.</p>
-<strong>- Aman</strong>
+<strong>- Tanveer</strong>
 </div>
 
-</div>
 </section>
 
 <section>
 <h2>📍 Location</h2>
 <p>Opposite Kali Mata Mandir, Sodal Road, Jalandhar, Punjab - 144004</p>
-<p><strong>Open:</strong> 5 PM – 11 PM</p>
-<p><strong>Call:</strong> 9888919532</p>
+<p><strong>Open:</strong> 4 PM – 11 PM</p>
+<p><strong>Call:</strong> 9888919532, 7658019532</p>
+
+<br><br>
+
+<iframe
+    src="https://www.google.com/maps?q=Opposite+Kali+Mata+Mandir+Sodal+Road+Jalandhar+Punjab+144004&output=embed"
+    width="100%"
+    height="350"
+    style="border:0; border-radius:10px;"
+    allowfullscreen=""
+    loading="lazy">
+</iframe>
+
+<br><br>
+
+<a href="https://share.google/6nU2lZhDfm0bkJVCC" target="_blank">
+<button style="background:#4285F4;">Get Directions</button>
+</a>
+
 </section>
 
 <footer>
