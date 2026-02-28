@@ -164,21 +164,41 @@ function sendToWhatsApp(event){
     var payment = document.getElementById("payment").value;
     var time = document.getElementById("Time").value;
 
-    var message = "New Order%0A%0A"
-        + "Name: " + name + "%0A"
-        + "Phone: " + phone + "%0A%0A";
+    // Prices List
+    var prices = {
+        "Veg Noodles": 60,
+        "Burger": 40,
+        "Cheese Burger": 50,
+        "Veg Spring Rolls": 15,
+        "Fries": 60,
+        "Soft Drinks": 30
+    };
+
+    var message = "🧾 *PFF FAST FOOD INVOICE* %0A%0A";
+    message += "Name: " + name + "%0A";
+    message += "Phone: " + phone + "%0A%0A";
+
+    var total = 0;
 
     for (let i = 1; i <= 6; i++) {
-    let item = document.getElementById("item" + i)?.value;
-    let qty = document.getElementById("quantity" + i)?.value;
+        let item = document.getElementById("item" + i)?.value;
+        let qty = document.getElementById("quantity" + i)?.value;
 
-    if(item && qty){
-        message += "Item: " + item + " | Qty: " + qty + "%0A";
+        if(item && qty){
+            let price = prices[item];
+            let itemTotal = price * qty;
+            total += itemTotal;
+
+            message += "Item: " + item + "%0A";
+            message += "Qty: " + qty + " x ₹" + price + " = ₹" + itemTotal + "%0A%0A";
+        }
     }
-}
 
-    message += "%0APayment: " + payment + "%0A";
-    message += "Pickup Time: " + time;
+    message += "-------------------------%0A";
+    message += "Total Amount: ₹" + total + "%0A%0A";
+    message += "Payment: " + payment + "%0A";
+    message += "Pickup Time: " + time + "%0A%0A";
+    message += "Thank you for ordering from PFF FAST FOOD 🍔";
 
     var whatsappURL = "https://wa.me/919888919532?text=" + message;
     window.open(whatsappURL, "_blank");
@@ -409,6 +429,7 @@ function sendToWhatsApp(event){
 
 </body>
 </html>
+
 
 
 
