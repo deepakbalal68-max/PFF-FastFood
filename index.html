@@ -151,18 +151,24 @@ function sendToWhatsApp(event){
 
     var name = document.getElementById("name").value;
     var phone = document.getElementById("phone").value;
-    var item = document.getElementById("item").value;
-    var quantity = document.getElementById("quantity").value;
     var payment = document.getElementById("payment").value;
-    var address = document.getElementById("address").value;
+    var time = document.getElementById("Time").value;
 
     var message = "New Order%0A%0A"
         + "Name: " + name + "%0A"
-        + "Phone: " + phone + "%0A"
-        + "Item: " + item + "%0A"
-        + "Quantity: " + quantity + "%0A"
-        + "Payment: " + payment + "%0A"
-        + "Pickup Time: " + document.getElementById("Time").value;
+        + "Phone: " + phone + "%0A%0A";
+
+    for (let i = 2; i <= 6; i++) {
+        let item = document.getElementById("item" + i)?.value;
+        let qty = document.getElementById("quantity" + (i === 2 ? "" : i))?.value;
+
+        if(item && qty){
+            message += "Item: " + item + " | Qty: " + qty + "%0A";
+        }
+    }
+
+    message += "%0APayment: " + payment + "%0A";
+    message += "Pickup Time: " + time;
 
     var whatsappURL = "https://wa.me/919888919532?text=" + message;
     window.open(whatsappURL, "_blank");
@@ -225,8 +231,8 @@ function sendToWhatsApp(event){
 <input type="text" id="name" placeholder="Your Name" required>
 <input type="tel" id="phone" placeholder="Your Phone Number" required>
 
-<!-- ✅ Select Another Item 2 -->
-<select id="item2">
+<!-- ✅ Select Item 1 -->
+<select id="item1">
 <option value="">Select Item 1</option>
 <option>Veg Noodles</option>
 <option>Burger</option>
@@ -238,7 +244,7 @@ function sendToWhatsApp(event){
 </select>
 <input type="number" id="quantity" placeholder="Quantity" min="1" required>
 
-<!-- ✅ Select Another Item 2 -->
+<!-- ✅ Select Item 2 -->
 <select id="item2">
 <option value="">Select Item 2</option>
 <option>Veg Noodles</option>
@@ -250,7 +256,7 @@ function sendToWhatsApp(event){
 </select>
 <input type="number" id="quantity2" placeholder="Quantity" min="1">
 
-<!-- ✅ Select Another Item 3 -->
+<!-- ✅ Select Item 3 -->
 <select id="item3">
 <option value="">Select Item 3</option>
 <option>Veg Noodles</option>
@@ -262,7 +268,7 @@ function sendToWhatsApp(event){
 </select>
 <input type="number" id="quantity3" placeholder="Quantity" min="1">
 
-<!-- ✅ Select Another Item 4 -->
+<!-- ✅ Select Item 4 -->
 <select id="item4">
 <option value="">Select Item 4</option>
 <option>Veg Noodles</option>
@@ -274,7 +280,7 @@ function sendToWhatsApp(event){
 </select>
 <input type="number" id="quantity4" placeholder="Quantity" min="1">
 
-<!-- ✅ Select Another Item 5 -->
+<!-- ✅ Select Item 5 -->
 <select id="item5">
 <option value="">Select Item 5</option>
 <option>Veg Noodles</option>
@@ -286,7 +292,7 @@ function sendToWhatsApp(event){
 </select>
 <input type="number" id="quantity5" placeholder="Quantity" min="1">
 
-<!-- ✅ Select Another Item 6 -->
+<!-- ✅ Select Item 6 -->
 <select id="item6">
 <option value="">Select Item 6</option>
 <option>Veg Noodles</option>
@@ -386,3 +392,4 @@ loading="lazy">
 
 </body>
 </html>
+
