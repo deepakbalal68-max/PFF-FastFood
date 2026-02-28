@@ -132,6 +132,13 @@ footer {
     box-shadow:0 3px 8px rgba(0,0,0,0.1);
 }
 
+.button-row {
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
 @media (max-width:600px){
     .menu-container {flex-direction:column; align-items:center;}
     .menu-item {width:90%;}
@@ -155,7 +162,7 @@ function sendToWhatsApp(event){
         + "Item: " + item + "%0A"
         + "Quantity: " + quantity + "%0A"
         + "Payment: " + payment + "%0A"
-        + "Address: " + address;
+        + "Pickup Time: " + document.getElementById("Time").value;
 
     var whatsappURL = "https://wa.me/919888919532?text=" + message;
     window.open(whatsappURL, "_blank");
@@ -171,7 +178,7 @@ function sendToWhatsApp(event){
 </header>
 
 <div class="hero">
-<h1>Welcome to PFF FAST FOOD</h1>
+<h1>🔥 "Hot & Fresh Fast Food in Jalandhar!"</h1>
 </div>
 
 <section>
@@ -180,44 +187,60 @@ function sendToWhatsApp(event){
 
 <div class="menu-item">
 <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=800&auto=format&fit=crop" alt="Veg Noodles">
-<h3>Veg Noodles</h3>
+<h3>Veg Noodles - ₹60</h3>
 </div>
 
 <div class="menu-item">
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfB_iJt9JxN3M33edH2AVfRfzmr48gm_0lIA&s">
-<h3>Burger</h3>
+<h3>Burger - ₹40</h3>
 </div>
 
 <div class="menu-item">
 <img src="https://5.imimg.com/data5/QY/QT/GLADMIN-46611207/big-crunch-veg-cheese-burger.png">
-<h3>Cheese Burger</h3>
+<h3>Cheese Burger - ₹50</h3>
 </div>
 
 <div class="menu-item">
 <img src="https://i.ytimg.com/vi/4WiBxqorlJo/maxresdefault.jpg">
-<h3>Veg Spring Rolls</h3>
+<h3>Veg Spring Rolls - ₹15 (1PC)</h3>
 </div>
 
 <div class="menu-item">
 <img src="https://thissillygirlskitchen.com/wp-content/uploads/2020/02/homemade-french-fries-8.jpg">
-<h3>Fries</h3>
+<h3>Fries - ₹60(Full)</h3>
 </div>
 
 <div class="menu-item">
-<img src="https://static.wixstatic.com/media/8f1abd_80bf432a005041b59c2a7fa1960ce71e~mv2.jpeg/v1/fill/w_744,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/8f1abd_80bf432a005041b59c2a7fa1960ce71e~mv2.jpeg">
-<h3>Soft Drinks</h3>
+<img src="https://static.wixstatic.com/media/8f1abd_80bf432a005041b59c2a7fa1960ce71e~mv2.jpeg">
+<h3>Soft Drinks - ₹30</h3>
+</div>
+
 </div>
 </section>
 
 <section>
-<h2>🛒 Order Online</h2>
+<h2>🛒 Future Order Online(Take Away Only)</h2>
 
 <form onsubmit="sendToWhatsApp(event)">
 <input type="text" id="name" placeholder="Your Name" required>
 <input type="tel" id="phone" placeholder="Your Phone Number" required>
 
-<select id="item" required>
-<option value="">Select Item</option>
+<!-- ✅ Select Another Item 2 -->
+<select id="item2">
+<option value="">Select Item 1</option>
+<option>Veg Noodles</option>
+<option>Burger</option>
+<option>Cheese Burger</option>
+<option>Veg Spring Rolls</option>
+<option>Fries</option>
+<option>Soft Drinks</option>
+
+</select>
+<input type="number" id="quantity" placeholder="Quantity" min="1" required>
+
+<!-- ✅ Select Another Item 2 -->
+<select id="item2">
+<option value="">Select Item 2</option>
 <option>Veg Noodles</option>
 <option>Burger</option>
 <option>Cheese Burger</option>
@@ -225,24 +248,78 @@ function sendToWhatsApp(event){
 <option>Fries</option>
 <option>Soft Drinks</option>
 </select>
+<input type="number" id="quantity2" placeholder="Quantity" min="1">
 
-<input type="number" id="quantity" placeholder="Quantity" min="1" required>
+<!-- ✅ Select Another Item 3 -->
+<select id="item3">
+<option value="">Select Item 3</option>
+<option>Veg Noodles</option>
+<option>Burger</option>
+<option>Cheese Burger</option>
+<option>Veg Spring Rolls</option>
+<option>Fries</option>
+<option>Soft Drinks</option>
+</select>
+<input type="number" id="quantity3" placeholder="Quantity" min="1">
+
+<!-- ✅ Select Another Item 4 -->
+<select id="item4">
+<option value="">Select Item 4</option>
+<option>Veg Noodles</option>
+<option>Burger</option>
+<option>Cheese Burger</option>
+<option>Veg Spring Rolls</option>
+<option>Fries</option>
+<option>Soft Drinks</option>
+</select>
+<input type="number" id="quantity4" placeholder="Quantity" min="1">
+
+<!-- ✅ Select Another Item 5 -->
+<select id="item5">
+<option value="">Select Item 5</option>
+<option>Veg Noodles</option>
+<option>Burger</option>
+<option>Cheese Burger</option>
+<option>Veg Spring Rolls</option>
+<option>Fries</option>
+<option>Soft Drinks</option>
+</select>
+<input type="number" id="quantity5" placeholder="Quantity" min="1">
+
+<!-- ✅ Select Another Item 6 -->
+<select id="item6">
+<option value="">Select Item 6</option>
+<option>Veg Noodles</option>
+<option>Burger</option>
+<option>Cheese Burger</option>
+<option>Veg Spring Rolls</option>
+<option>Fries</option>
+<option>Soft Drinks</option>
+</select>
+<input type="number" id="quantity6" placeholder="Quantity" min="1">
 
 <select id="payment" required>
 <option value="">Payment Method</option>
-<option>Cash on Delivery</option>
-<option>UPI</option>
+<option>Pay On Pickup</option>
+<option>Paid Via UPI</option>
 </select>
-
-<textarea id="address" placeholder="Your Address"></textarea>
+<textarea id="Time" placeholder="Pickup Time (Example:6:30 PM.)"></textarea>
 
 <button type="submit">Place Order</button>
+
 </form>
+
+<!-- ✅ UPI ID Section Added -->
+<div style="margin-top:20px; background:white; padding:15px; border-radius:8px; max-width:500px; margin-left:auto; margin-right:auto; box-shadow:0 3px 8px rgba(0,0,0,0.1);">
+<h3 style="color:#d62828;">💳 UPI Payment Details</h3>
+<p><strong>UPI ID:</strong> BHARATPE4000519442@yesbankltd</p>
+<p style="font-size:14px;">Please send payment screenshot on WhatsApp after payment.</p>
+</div>
 
 <br>
 
 <a href="https://wa.me/919888919532" target="_blank">
-<button style="background:#25D366;">Order on WhatsApp</button>
+<button style="background:#25D366;">Click Here For Share Screenshot</button>
 </a>
 
 </section>
@@ -279,19 +356,25 @@ function sendToWhatsApp(event){
 <br><br>
 
 <iframe
-    src="https://www.google.com/maps?q=Opposite+Kali+Mata+Mandir+Sodal+Road+Jalandhar+Punjab+144004&output=embed"
-    width="100%"
-    height="350"
-    style="border:0; border-radius:10px;"
-    allowfullscreen=""
-    loading="lazy">
+src="https://www.google.com/maps?q=Opposite+Kali+Mata+Mandir+Sodal+Road+Jalandhar+Punjab+144004&output=embed"
+width="100%"
+height="350"
+style="border:0; border-radius:10px;"
+allowfullscreen=""
+loading="lazy">
 </iframe>
 
 <br><br>
 
-<a href="https://share.google/6nU2lZhDfm0bkJVCC" target="_blank">
-<button style="background:#4285F4;">Get Directions</button>
+<div class="button-row">
+<a href="https://wa.me/919888919532" target="_blank">
+<button style="background:#25D366;">WhatsApp</button>
 </a>
+
+<a href="tel:9888919532">
+<button style="background:#f77f00;">Call Now</button>
+</a>
+</div>
 
 </section>
 
