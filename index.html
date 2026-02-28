@@ -534,41 +534,79 @@ function sendToWhatsApp(event){
 
     updateDashboard();
 
-// 📄 Auto PDF
+// 📄 Professional Auto PDF
 const { jsPDF } = window.jspdf;
 const doc = new jsPDF();
 
 let y = 20;
 
-doc.setFontSize(18);
-doc.text("PFF FAST FOOD",20,y);
+// Title
+doc.setFont("helvetica","bold");
+doc.setFontSize(20);
+doc.text("PFF FAST FOOD", 105, y, { align: "center" });
+
+y += 10;
+doc.setFontSize(10);
+doc.setFont("helvetica","normal");
+doc.text("Order No: " + orderNumber, 20, y);
+doc.text("Date: " + new Date().toLocaleString(), 140, y);
+
+y += 8;
+doc.text("Customer: " + name, 20, y);
+y += 6;
+doc.text("Phone: " + phone, 20, y);
+
 y += 10;
 
-doc.setFontSize(12);
-doc.text("Order No: "+orderNumber,20,y);
+// Line
+doc.line(20, y, 190, y);
 y += 8;
 
-doc.text("Name: "+name,20,y);
+// Table Header
+doc.setFont("helvetica","bold");
+doc.text("Item", 20, y);
+doc.text("Qty", 120, y);
+doc.text("Price", 160, y);
+
+y += 5;
+doc.line(20, y, 190, y);
 y += 8;
 
-doc.text("Phone: "+phone,20,y);
-y += 12;
+doc.setFont("helvetica","normal");
 
-doc.text("Items:",20,y);
-y += 8;
-
-// Split items properly line by line
+// Split items
 let itemsArray = itemsText.split("\n");
-itemsArray.forEach(item=>{
-    doc.text(item,25,y);
-    y += 8;
+
+itemsArray.forEach(item => {
+    let parts = item.split("x");
+    if(parts.length >= 2){
+        let namePart = parts[0].trim();
+        let rest = parts[1].split("=");
+        let qty = rest[0].trim();
+        let price = rest[1].trim();
+
+        doc.text(namePart, 20, y);
+        doc.text(qty, 125, y);
+        doc.text(price, 160, y);
+        y += 8;
+    }
 });
 
 y += 5;
-doc.text("Total: ₹"+total,20,y);
+doc.line(20, y, 190, y);
+y += 10;
 
-doc.save(orderNumber+".pdf");
+doc.setFont("helvetica","bold");
+doc.setFontSize(14);
+doc.text("Total: ₹" + total, 150, y);
 
+y += 15;
+
+doc.setFontSize(10);
+doc.setFont("helvetica","normal");
+doc.text("Thank You! Visit Again 🙏", 105, y, { align: "center" });
+
+doc.save(orderNumber + ".pdf");
     window.open("https://wa.me/919888919532?text="+message,"_blank");
 }
 
@@ -619,6 +657,7 @@ function downloadExcel(){
 </script>
 </body>
 </html>
+
 
 
 
