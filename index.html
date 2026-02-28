@@ -426,9 +426,176 @@ function sendToWhatsApp(event){
 </footer>
 
 <a class="whatsapp" href="https://wa.me/919888919532" target="_blank">📲</a>
+<!-- 🔔 Order Sound -->
+<audio id="orderSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3" preload="auto"></audio>
 
+<!-- 📊 Admin Button -->
+<button onclick="openDashboard()" 
+style="position:fixed;top:20px;right:20px;background:#000;color:#fff;padding:10px;border:none;border-radius:6px;z-index:9999;">
+Admin
+</button>
+
+<!-- 📊 Admin Dashboard -->
+<div id="adminPanel" style="
+display:none;
+position:fixed;
+top:70px;
+right:20px;
+width:320px;
+background:white;
+padding:20px;
+box-shadow:0 5px 20px rgba(0,0,0,0.3);
+border-radius:10px;
+z-index:9999;
+max-height:450px;
+overflow:auto;">
+<h3>📊 Admin Dashboard</h3>
+<p><strong>Total Orders Today:</strong> <span id="totalOrders">0</span></p>
+<p><strong>Total Revenue Today:</strong> ₹<span id="totalRevenue">0</span></p>
+<button onclick="downloadExcel()">📦 Download Excel</button>
+<button onclick="closeDashboard()">Close</button>
+<hr>
+<div id="orderList"></div>
+</div>
+
+<!-- 📄 PDF Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+let orders = JSON.parse(localStorage.getItem("allOrders")) || [];
+
+function sendToWhatsApp(event){
+    event.preventDefault();
+
+    var name = document.getElementById("name").value;
+    var phone = document.getElementById("phone").value;
+    var payment = document.getElementById("payment").value;
+    var time = document.getElementById("Time").value;
+
+    // 🔢 Daily Serial Number
+    var today = new Date().toISOString().split('T')[0];
+    var lastDate = localStorage.getItem("orderDate");
+    var orderCount = localStorage.getItem("orderCount");
+
+    if(lastDate === today){
+        orderCount = orderCount ? parseInt(orderCount)+1 : 1;
+    } else {
+        orderCount = 1;
+    }
+
+    localStorage.setItem("orderDate", today);
+    localStorage.setItem("orderCount", orderCount);
+
+    var orderNumber = "PFF-" + orderCount.toString().padStart(3,'0');
+
+    var prices = {
+        "Veg Noodles": 60,
+        "Burger": 40,
+        "Cheese Burger": 50,
+        "Veg Spring Rolls": 15,
+        "Fries": 60,
+        "Soft Drinks": 30
+    };
+
+    var message = "🧾 *PFF FAST FOOD INVOICE* %0A%0A";
+    message += "Order No: " + orderNumber + "%0A";
+    message += "Name: " + name + "%0A";
+    message += "Phone: " + phone + "%0A%0A";
+
+    var total = 0;
+    var itemsText = "";
+
+    for (let i = 1; i <= 6; i++) {
+        let item = document.getElementById("item" + i)?.value;
+        let qty = document.getElementById("quantity" + i)?.value;
+
+        if(item && qty){
+            let price = prices[item];
+            let itemTotal = price * qty;
+            total += itemTotal;
+
+            message += item + " x " + qty + " = ₹" + itemTotal + "%0A";
+            itemsText += item + " x " + qty + " = ₹" + itemTotal + "\n";
+        }
+    }
+
+    message += "%0A---------------------%0A";
+    message += "Total Amount: ₹" + total + "%0A";
+    message += "Payment: " + payment + "%0A";
+    message += "Pickup Time: " + time;
+
+    // 🔔 Play Sound
+    document.getElementById("orderSound").play();
+
+    // 💾 Save Order
+    var orderData = {orderNumber,name,phone,total,payment,time,date:today};
+    orders.push(orderData);
+    localStorage.setItem("allOrders", JSON.stringify(orders));
+
+    updateDashboard();
+
+    // 📄 Auto PDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    doc.text("PFF FAST FOOD",20,20);
+    doc.text("Order No: "+orderNumber,20,30);
+    doc.text("Name: "+name,20,40);
+    doc.text("Phone: "+phone,20,50);
+    doc.text(itemsText,20,60);
+    doc.text("Total: ₹"+total,20,100);
+    doc.save(orderNumber+".pdf");
+
+    window.open("https://wa.me/919888919532?text="+message,"_blank");
+}
+
+function openDashboard(){
+    var password = prompt("Enter Admin Password:");
+    if(password === "PFF@2026"){
+        document.getElementById("adminPanel").style.display="block";
+        updateDashboard();
+    } else {
+        alert("Wrong Password!");
+    }
+}
+
+function closeDashboard(){
+    document.getElementById("adminPanel").style.display="none";
+}
+
+function updateDashboard(){
+    var today = new Date().toISOString().split('T')[0];
+
+    let todayOrders = orders.filter(o => o.date === today);
+
+    document.getElementById("totalOrders").innerText = todayOrders.length;
+
+    let revenue = todayOrders.reduce((sum,o)=>sum+o.total,0);
+    document.getElementById("totalRevenue").innerText = revenue;
+
+    let list="";
+    todayOrders.forEach(o=>{
+        list += "<p>"+o.orderNumber+" - ₹"+o.total+"</p>";
+    });
+
+    document.getElementById("orderList").innerHTML = list;
+}
+
+function downloadExcel(){
+    let csv="Order No,Name,Phone,Total,Payment,Pickup Time,Date\n";
+    orders.forEach(o=>{
+        csv+=`${o.orderNumber},${o.name},${o.phone},${o.total},${o.payment},${o.time},${o.date}\n`;
+    });
+
+    let blob=new Blob([csv],{type:'text/csv'});
+    let link=document.createElement("a");
+    link.href=URL.createObjectURL(blob);
+    link.download="PFF_Orders.csv";
+    link.click();
+}
+</script>
 </body>
 </html>
+
 
 
 
